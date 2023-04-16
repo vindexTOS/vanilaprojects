@@ -87,6 +87,10 @@
     .seconds {
       color: white;
     }
+    .setTime {
+      display: flex;
+      gap: 20px;
+    }
   </style>
   <body>
     <div class="mainDiv">
@@ -105,25 +109,33 @@
         <div class="rounds">
           <label style="color: white;">
             Rounds
-            <span>1</span>
+            <span class="roundCount">1</span>
           </label>
           <input type="range" id="round" max="10" min="1" />
         </div>
         <div class="rounds">
           <label style="color: white;">
             Cycles
-            <span>1</span>
+            <span class="cycleCount">1</span>
           </label>
           <input type="range" id="cycles" max="10" min="1" />
         </div>
         <!-- time -->
         <div class="setTime">
           <div class="seconds">
-            <h1>Saconds</h1>
+            <h1>Work Time</h1>
             <div>
               <button id="increment">+</button>
               <span id="setTimer">00</span>
               <button id="decrement">-</button>
+            </div>
+          </div>
+          <div class="seconds">
+            <h1>Rest Time</h1>
+            <div>
+              <button id="incrementRest">+</button>
+              <span id="setTimerRest">00</span>
+              <button id="decrementRest">-</button>
             </div>
           </div>
         </div>
@@ -139,22 +151,80 @@
       const rounds = document.querySelector('#round')
       const setTimer = document.querySelector('#setTimer')
       const screenTime = document.querySelector('#time')
+      const roundSpan = document.querySelector('.roundCount')
+      const cycleSpan = document.querySelector('.cycleCount')
+      const restIncrement = document.querySelector('#incrementRest')
+      const restDecrement = document.querySelector('#decrementRest')
+      const setTimeRest = document.querySelector('#setTimerRest')
       let time = 0
-      rounds.addEventListener('change', (e) => {})
-      cycle.addEventListener('change', (e) => {})
-      increment.addEventListener('click', () => {
-        time += 10
-        setTimer.innerText = +time % 70
+      let restTime = 0
+      let roundCount = 0
+      let cycleCount = 0
+      //   range
+      rounds.addEventListener('change', (e) => {
+        roundCount = Number(e.target.value)
+        roundSpan.innerText = e.target.value
       })
-      decrement.addEventListener('click', () => {
-        if (time > 0) {
-          time -= 10
-          setTimer.innerText = time % 70
-        } else {
-          time = 0
-          setTimer.innerText = 0
+      cycle.addEventListener('change', (e) => {
+        cycleCount = Number(e.target.value)
+        cycleSpan.innerText = e.target.value
+      })
+      //   range
+      //   Work Time Function
+      function incrementDecrement(type, classList) {
+        if (type === 'increment') {
+          if (time < 60) {
+            time += 10
+
+            classList.innerText = +time
+          }
         }
-      })
+        if (type === 'decrese') {
+          if (time > 0) {
+            time -= 10
+            classList.innerText = time
+          } else {
+            time = 0
+            classList.innerText = 0
+          }
+        }
+      }
+      function incrementDecrementRest(type, classList) {
+        if (type === 'incrementRest') {
+          if (restTime < 60) {
+            restTime += 10
+
+            classList.innerText = +restTime
+          }
+        }
+        if (type === 'decreseRest') {
+          if (restTime > 0) {
+            restTime -= 10
+            classList.innerText = restTime
+          } else {
+            restTime = 0
+            classList.innerText = 0
+          }
+        }
+      }
+      //    increment work
+
+      increment.addEventListener('click', () =>
+        incrementDecrement('increment', setTimer),
+      )
+      decrement.addEventListener('click', () =>
+        incrementDecrement('decrese', setTimer),
+      )
+      //    increment work
+      // increment REst
+      restIncrement.addEventListener('click', () =>
+        incrementDecrementRest('incrementRest', setTimeRest),
+      )
+      restDecrement.addEventListener('click', () =>
+        incrementDecrementRest('decreseRest', setTimeRest),
+      )
+
+      // start
       start.addEventListener('click', () => {
         setInterval(() => {
           if (time >= 1) {
