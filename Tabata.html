@@ -158,8 +158,10 @@
       const setTimeRest = document.querySelector('#setTimerRest')
       let time = 0
       let restTime = 0
-      let roundCount = 0
-      let cycleCount = 0
+      let roundCount = 1
+      let cycleCount = 1
+      let roundedTime = 0
+      let rounderRestTime = 0
       //   range
       rounds.addEventListener('change', (e) => {
         roundCount = Number(e.target.value)
@@ -175,16 +177,18 @@
         if (type === 'increment') {
           if (time < 60) {
             time += 10
-
+            roundedTime += 10
             classList.innerText = +time
           }
         }
         if (type === 'decrese') {
           if (time > 0) {
             time -= 10
+            roundedTime -= 10
             classList.innerText = time
           } else {
             time = 0
+            roundedTime = 0
             classList.innerText = 0
           }
         }
@@ -193,6 +197,7 @@
         if (type === 'incrementRest') {
           if (restTime < 60) {
             restTime += 10
+            rounderRestTime += 10
 
             classList.innerText = +restTime
           }
@@ -200,9 +205,11 @@
         if (type === 'decreseRest') {
           if (restTime > 0) {
             restTime -= 10
+            rounderRestTime -= 10
             classList.innerText = restTime
           } else {
             restTime = 0
+            rounderRestTime = 0
             classList.innerText = 0
           }
         }
@@ -225,14 +232,46 @@
       )
 
       // start
-      start.addEventListener('click', () => {
-        setInterval(() => {
-          if (time >= 1) {
-            time--
-            screenTime.innerText = time
+
+      const restartTimerFun = () => {
+        screenTime.style.color = 'red'
+        while (restTime > 0) {
+          roundCount--
+          console.log(roundCount)
+          let intervalID = setInterval(() => {
+            restTime--
+            screenTime.innerText = restTime
+            if (restTime === 0) {
+              clearInterval(intervalID)
+              startFunction()
+              restTime = rounderRestTime
+            }
+          }, 1000)
+          break
+        }
+      }
+      const startFunction = () => {
+        screenTime.style.color = 'white'
+        if (roundCount > 0) {
+          while (time > 0) {
+            console.log('ON')
+            let internalID = setInterval(() => {
+              if (time >= 1) {
+                time--
+                screenTime.innerText = time
+              }
+
+              if (time === 0) {
+                restartTimerFun()
+                clearInterval(internalID)
+                time = roundedTime
+              }
+            }, 1000)
+            break
           }
-        }, 1000)
-      })
+        }
+      }
+      start.addEventListener('click', () => startFunction())
     </script>
   </body>
 </html>
