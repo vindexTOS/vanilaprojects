@@ -91,6 +91,9 @@
       display: flex;
       gap: 20px;
     }
+    .cycle-div {
+      visibility: hidden;
+    }
   </style>
   <body>
     <div class="mainDiv">
@@ -138,6 +141,14 @@
               <button id="decrementRest">-</button>
             </div>
           </div>
+          <div class="seconds cycle-div">
+            <h1>Cycle Rest Time</h1>
+            <div>
+              <button id="incrementCycle">+</button>
+              <span id="setTimerCycle">00</span>
+              <button id="decrementCycle">-</button>
+            </div>
+          </div>
         </div>
         <!--  -->
         <button id="start">START</button>
@@ -156,22 +167,54 @@
       const restIncrement = document.querySelector('#incrementRest')
       const restDecrement = document.querySelector('#decrementRest')
       const setTimeRest = document.querySelector('#setTimerRest')
+      const incrementCycle = document.querySelector('#incrementCycle')
+      const decrementCycle = document.querySelector('#decrementCycle')
+      const setTimeCycle = document.querySelector('#setTimerCycle')
+      const cyclingDiv = document.querySelector('.cycle-div')
       let time = 0
       let restTime = 0
       let roundCount = 1
+      let roundCounterStore = 0
+
       let cycleCount = 1
+      let cycleCountStore = 0
       let roundedTime = 0
       let rounderRestTime = 0
+      let cycleTime = 0
       //   range
       rounds.addEventListener('change', (e) => {
         roundCount = Number(e.target.value)
+        roundCounterStore = Number(e.target.value)
         roundSpan.innerText = e.target.value
       })
       cycle.addEventListener('change', (e) => {
         cycleCount = Number(e.target.value)
+        cycleCountStore = Number(e.target.value)
         cycleSpan.innerText = e.target.value
+        cyclingDiv.style.visibility = cycleCount > 1 ? 'visible' : 'hidden'
       })
       //   range
+      // cycles
+      function cycleSpinning(type, classList) {
+        if (type === 'increment') {
+          if (cycleTime < 60) {
+            cycleTime += 10
+
+            classList.innerText = +cycleTime
+          }
+        }
+        if (type === 'decrese') {
+          if (cycleTime > 0) {
+            cycleTime -= 10
+
+            classList.innerText = cycleTime
+          } else {
+            cycleTime = 0
+
+            classList.innerText = 0
+          }
+        }
+      }
       //   Work Time Function
       function incrementDecrement(type, classList) {
         if (type === 'increment') {
@@ -214,6 +257,14 @@
           }
         }
       }
+
+      // increment decrement cycle time
+      incrementCycle.addEventListener('click', () =>
+        cycleSpinning('increment', setTimeCycle),
+      )
+      decrementCycle.addEventListener('click', () =>
+        cycleSpinning('decrese', setTimeCycle),
+      )
       //    increment work
 
       increment.addEventListener('click', () =>
@@ -232,9 +283,29 @@
       )
 
       // start
+      //cycle loop
+      const cyclingFunction = () => {
+        screenTime.style.color = 'green'
+        if (cycleCount > 0) {
+          cycleCount--
 
+          let intervalID = setInterval(() => {
+            cycleTime--
+            screenTime.innerText = cycleTime
+            if (cycleTime <= 0) {
+              clearInterval(intervalID)
+              time = roundedTime
+              restTime = rounderRestTime
+              roundCount = roundCounterStore
+              startFunction()
+            }
+          }, 1000)
+        }
+      }
+      // restTime loop
       const restartTimerFun = () => {
         screenTime.style.color = 'red'
+
         while (restTime > 0) {
           roundCount--
           console.log(roundCount)
@@ -243,8 +314,14 @@
             screenTime.innerText = restTime
             if (restTime === 0) {
               clearInterval(intervalID)
-              startFunction()
+              //re running round function if roundCount is not 0
+
               restTime = rounderRestTime
+              if (roundCount === 0) {
+                cyclingFunction()
+              } else {
+                startFunction()
+              }
             }
           }, 1000)
           break
@@ -262,6 +339,7 @@
               }
 
               if (time === 0) {
+                //running restart after time is over
                 restartTimerFun()
                 clearInterval(internalID)
                 time = roundedTime
@@ -271,6 +349,7 @@
           }
         }
       }
+
       start.addEventListener('click', () => startFunction())
     </script>
   </body>
