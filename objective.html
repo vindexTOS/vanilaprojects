@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mainDiv {
+      border: 2px solid black;
+      width: 600px;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    .innerDiv {
+      display: flex;
+      gap: 50px;
+    }
+  </style>
+  <body>
+    <div class="mainDiv">
+      <input type="text" id="textInput" placeholder="To Do " />
+      <button id="addbtn">ADD</button>
+      <div id="list"></div>
+    </div>
+
+    <script>
+      const input = document.querySelector('#textInput')
+      const btn = document.querySelector('#addbtn')
+      const listDiv = document.querySelector('#list')
+
+      class AddToList {
+        constructor(text) {
+          this.text = text
+          this.list = []
+        }
+
+        addToVal() {
+          this.id = Math.random() * 10000
+          const listObj = {
+            text: input.value,
+            id: this.id,
+          }
+
+          this.list.push(listObj)
+
+          const newDiv = document.createElement('div')
+          const newHeader = document.createElement('h1')
+          const newButton = document.createElement('button')
+
+          this.list.map((val) => {
+            listDiv.innerHTML = val.text
+          })
+        }
+      }
+
+      const list = new AddToList()
+      btn.addEventListener('click', () => list.addToVal())
+    </script>
+  </body>
+</html>

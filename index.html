@@ -12,7 +12,178 @@
       <input type="text" id="myInput" />
       <button id="myBtn">Add</button>
       <div id="map"></div>
+      <h1></h1>
     </div>
-    <script src="./app.js"></script>
+    <script>
+      // const Person = function (firstName, birthYear) {
+      //   this.firstName = firstName
+      //   this.birthYear = birthYear
+      // }
+
+      // const gio = new Person('gio', 1998)
+      // console.log(gio)
+      // Person.prototype.calcAge = function () {
+      //   console.log(new Date().getFullYear() - this.birthYear)
+      // }
+      // gio.calcAge()
+      // Person.prototype.cocksize = 'thick6'
+      // console.log(gio.cocksize)
+      // console.log(Person.prototype.constructor)
+      // arr = [1, 2, 3, 4, 5, 5, 5, 3, 5, 3, 4]
+
+      // Array.prototype.unique = function () {
+      //   return [...new Set(this)]
+      // }
+
+      // console.log(arr.unique())
+      // const h1 = document.querySelector('h1')
+      // console.dir(h1.__proto__)
+
+      // const Car = function (brand, speed) {
+      //   this.brand = brand
+      //   this.speed = speed
+      // }
+
+      // Car.prototype.accselerate = function () {
+      //   console.log(`${(this.speed += 10)} km/h`)
+      // }
+      // Car.prototype.breakFun = function () {
+      //   console.log((this.speed -= 5))
+      // }
+      // const CAR1 = new Car('BMW', 120)
+      // const CAR2 = new Car('mercedes', 100)
+
+      // class PersonCl {
+      //   constructor(firstName, birthYear) {
+      //     this.firstName = firstName
+      //     this.birthYear = birthYear
+      //   }
+
+      //   calcAge() {
+      //     console.log(2022 - this.birthYear)
+      //   }
+
+      //   get age() {
+      //     return 2020 - this.birthYear
+      //   }
+      // }
+
+      // const acc = {
+      //   momvent: [10, 100, 100, 200],
+      //   get latest() {
+      //     return this.momvent.slice(-1).pop()
+      //   },
+
+      //   set latest(n) {
+      //     this.momvent.push(n)
+      //   },
+      // }
+
+      // acc.momvent.push(13)
+      // acc.latest = 13
+      // console.log(acc.momvent)
+
+      // const Person = function (firstName, birthYear) {
+      //   this.firstName = firstName
+
+      //   this.birthYear = birthYear
+      // }
+      // Person.prototype.calAge = function () {
+      //   console.log(this.firstName)
+      // }
+      // const ni = new Person('h', 1)
+
+      // const Student = function (firstName, birthYear, course) {
+      //   Person.call(this, firstName, birthYear)
+      //   this.course = course
+      // }
+      // Student.prototype = Object.create(Person.prototype)
+
+      // const gio = new Student('gio', 1998, 'agro')
+      // gio.calAge()
+
+      // const Car = function (make, speed) {
+      //   this.make = make
+      //   this.speed = speed
+      // }
+      // Car.prototype.accelerate = function () {
+      //   console.log((this.speed += 20))
+      //   if (this.charge) {
+      //     console.log((this.charge -= 1))
+      //   }
+      // }
+      // Car.prototype.break = function () {
+      //   console.log((this.speed -= 5))
+      // }
+      // const EV = function (charge, make, speed) {
+      //   Car.call(this, make, speed)
+      //   this.charge = charge
+      // }
+
+      // EV.prototype = Object.create(Car.prototype)
+      // EV.prototype.chargeBattary = function (charging) {
+      //   console.log((this.charge = charging))
+      // }
+      // const Tesla = new EV(100, 'tesla', 120)
+      // console.log(Tesla.make)
+      // Tesla.accelerate()
+      // Tesla.accelerate()
+      // Tesla.accelerate()
+      // Tesla.accelerate()
+      // Tesla.accelerate()
+      // Tesla.chargeBattary(2000)
+
+      // class Person {
+      //   constructor(firstName, birthYear) {
+      //     this.firstName = firstName
+      //     this.birthYear = birthYear
+      //   }
+      //   hi() {
+      //     console.log('hello ' + this.firstName)
+      //   }
+      // }
+
+      // class Student extends Person {
+      //   constructor(firstName, birthYear, course) {
+      //     super(firstName, birthYear)
+      //     this.course
+      //   }
+      // }
+
+      // const gio = new Student('gio', 299, 'agro')
+      // gio.hi()
+
+      class Account {
+        constructor(owner, currency, pin) {
+          this.owner = owner
+          this.currency = currency
+          this.pin = pin
+          this.movements = []
+          this.local = navigator.language
+
+          console.log('thanks for opening account ' + this.owner)
+        }
+        deposit(val) {
+          this.movements.push(val)
+        }
+        withdraw(val) {
+          this.deposit(-val)
+        }
+        approveLoan(val) {
+          return true
+        }
+        loan(val) {
+          if (this.approveLoan(val)) {
+            this.deposit(val)
+            console.log('loan aproved')
+          }
+        }
+      }
+
+      const acc1 = new Account('gio', 'lari', 203000)
+      console.log(acc1)
+      acc1.deposit(200)
+      acc1.withdraw(300)
+    </script>
   </body>
 </html>
