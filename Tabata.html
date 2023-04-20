@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <style>
     body {
@@ -17,6 +23,8 @@
       justify-content: center;
       background-color: rgb(31, 31, 31);
       overflow-x: hidden;
+      font-family: 'Orbitron', sans-serif;
+      user-select: none;
     }
     input[type='range'] {
       width: 100%;
@@ -117,6 +125,7 @@ how to remove the virtical space around the range input in IE*/
       flex-direction: column;
       gap: 50px;
     }
+
     .outCircleDiv {
       display: flex;
       align-items: center;
@@ -146,6 +155,7 @@ how to remove the virtical space around the range input in IE*/
       height: 450px;
       border-radius: 50%;
     }
+
     .innerDivWrapper {
       border-radius: 50%;
       width: 460px;
@@ -164,16 +174,37 @@ how to remove the virtical space around the range input in IE*/
       align-items: center;
       justify-content: center;
     }
+    @media screen and (max-width: 940px) {
+      .outCircleDiv {
+        width: 380px;
+        height: 380px;
+      }
+      .innerCircleDiv {
+        width: 390px;
+        height: 390px;
+      }
+      .innerDivWrapper {
+        width: 420px;
+        height: 420px;
+
+        background: none;
+      }
+      .timerRunTimeDiv {
+        width: 360px;
+        height: 360px;
+      }
+    }
     .mainTimeDiv {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       height: 200px;
       margin-bottom: 200px;
+      gap: 20px;
     }
     #time {
       color: white;
-      font-size: 12rem;
+      font-size: 10rem;
       font-weight: bolder;
     }
     .btn-wrapper {
@@ -220,7 +251,30 @@ how to remove the virtical space around the range input in IE*/
       font-size: 1.1rem;
       border: none;
     }
-
+    .btn-wrapper button:hover {
+      background: rgb(32, 255, 143);
+    }
+    @media screen and (max-width: 940px) {
+      .btn-wrapper {
+        width: 360px;
+      }
+      .mainTimeDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+      }
+      .setTime {
+        margin-top: 360px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        justify-content: center;
+      }
+    }
     .timeWrapper span {
       font-size: 20px;
       display: flex;
@@ -249,6 +303,12 @@ how to remove the virtical space around the range input in IE*/
       padding-bottom: 10px;
       border-radius: 20px;
     }
+    #reset {
+      background-color: rgb(0, 187, 255);
+    }
+    #reset:hover {
+      background-color: rgb(58, 202, 255);
+    }
   </style>
   <body>
     <div class="mainDiv">
@@ -257,7 +317,7 @@ how to remove the virtical space around the range input in IE*/
         <div class="innerDivWrapper">
           <div class="innerCircleDiv">
             <div class="timerRunTimeDiv">
-              <span id="time">20</span>
+              <span id="time">00</span>
             </div>
           </div>
         </div>
@@ -334,7 +394,10 @@ how to remove the virtical space around the range input in IE*/
               </div>
             </div>
           </div>
-          <button id="start">START</button>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <button id="start">START</button>
+            <button id="reset">RESET</button>
+          </div>
         </div>
         <!--  -->
       </div>
@@ -356,6 +419,7 @@ how to remove the virtical space around the range input in IE*/
       const decrementCycle = document.querySelector('#decrementCycle')
       const setTimeCycle = document.querySelector('#setTimerCycle')
       const cyclingDiv = document.querySelector('.cycle-div')
+      const reset = document.querySelector('#reset')
       let time = 0
       let restTime = 0
       let roundCount = 1
@@ -470,6 +534,8 @@ how to remove the virtical space around the range input in IE*/
 
       // start
       //cycle loop
+      let reStartCheck = true
+      let reSetTimer = true
       const cyclingFunction = () => {
         screenTime.style.color = 'green'
         if (cycleCount > 0) {
@@ -515,28 +581,36 @@ how to remove the virtical space around the range input in IE*/
       }
       const startFunction = () => {
         screenTime.style.color = 'white'
-        if (roundCount > 0) {
-          while (time > 0) {
-            console.log('ON')
-            let internalID = setInterval(() => {
-              if (time >= 1) {
-                time--
-                screenTime.innerText = time
-              }
 
-              if (time === 0) {
-                //running restart after time is over
-                restartTimerFun()
-                clearInterval(internalID)
-                time = roundedTime
-              }
-            }, 1000)
-            break
+        if (roundCount > 0) {
+          if (reStartCheck) {
+            reStartCheck = false
+            while (time > 0) {
+              console.log('ON')
+              let internalID = setInterval(() => {
+                if (time >= 1) {
+                  time--
+                  screenTime.innerText = time
+                }
+
+                if (time === 0) {
+                  //running restart after time is over
+                  restartTimerFun()
+                  clearInterval(internalID)
+                  time = roundedTime
+                }
+              }, 1000)
+              break
+            }
           }
         }
       }
 
+      const ResetFunction = () => {
+        window.location.reload()
+      }
       start.addEventListener('click', () => startFunction())
+      reset.addEventListener('click', () => ResetFunction())
     </script>
   </body>
 </html>
