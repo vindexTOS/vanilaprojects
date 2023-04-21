@@ -430,6 +430,13 @@ how to remove the virtical space around the range input in IE*/
       let roundedTime = 0
       let rounderRestTime = 0
       let cycleTime = 0
+      // music
+      let audio = new Audio(
+        './utils/sounds/videoplayback (online-audio-converter.com).mp3',
+      )
+      let ringAudio = new Audio(
+        './utils/sounds/Boxing Bell Sound Effect (online-audio-converter.com).mp3',
+      )
       //   range
       rounds.addEventListener('change', (e) => {
         roundCount = Number(e.target.value)
@@ -442,6 +449,7 @@ how to remove the virtical space around the range input in IE*/
         cycleSpan.innerText = e.target.value
         cyclingDiv.style.visibility = cycleCount > 1 ? 'visible' : 'hidden'
       })
+
       //   range
       // cycles
       function cycleSpinning(type, classList) {
@@ -556,12 +564,16 @@ how to remove the virtical space around the range input in IE*/
       }
       // restTime loop
       const restartTimerFun = () => {
+        ringAudio.play()
         screenTime.style.color = 'red'
 
         while (restTime > 0) {
           roundCount--
           console.log(roundCount)
           let intervalID = setInterval(() => {
+            if (restTime <= 5) {
+              audio.play()
+            }
             restTime--
             screenTime.innerText = restTime
             if (restTime === 0) {
@@ -572,6 +584,7 @@ how to remove the virtical space around the range input in IE*/
               if (roundCount === 0) {
                 cyclingFunction()
               } else {
+                reStartCheck = true
                 startFunction()
               }
             }
@@ -581,13 +594,18 @@ how to remove the virtical space around the range input in IE*/
       }
       const startFunction = () => {
         screenTime.style.color = 'white'
+        if (roundCount > 1) {
+          ringAudio.play()
+        }
 
         if (roundCount > 0) {
           if (reStartCheck) {
             reStartCheck = false
             while (time > 0) {
-              console.log('ON')
               let internalID = setInterval(() => {
+                if (time <= 5) {
+                  audio.play()
+                }
                 if (time >= 1) {
                   time--
                   screenTime.innerText = time

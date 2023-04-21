@@ -48,21 +48,21 @@
         }
 
         addToVal() {
-          this.id = Math.random() * 10000
-          const listObj = {
-            text: input.value,
-            id: this.id,
-          }
-
-          this.list.push(listObj)
-
           const newDiv = document.createElement('div')
           const newHeader = document.createElement('h1')
           const newButton = document.createElement('button')
+          newButton.innerText = 'Delete'
+          newDiv.appendChild(newButton)
+          newDiv.appendChild(newHeader)
 
-          this.list.map((val) => {
-            listDiv.innerHTML = val.text
+          newHeader.innerHTML = input.value
+          input.value = ''
+          const listItem = newDiv.cloneNode(true)
+          listItem.querySelector('button').addEventListener('click', () => {
+            listItem.remove()
           })
+
+          listDiv.appendChild(listItem)
         }
       }
 

@@ -1,7 +1,7 @@
 const mapDiv = document.getElementById('map')
 const myInput = document.getElementById('myInput')
 const myBtn = document.getElementById('myBtn')
-
+import audio from './utils/sounds/'
 let arr = []
 
 function deleteItem(index) {
@@ -19,11 +19,7 @@ function deleteItem(index) {
   })
 }
 
-
-
-function editItem(){
- 
-}
+function editItem() {}
 
 myBtn.addEventListener('click', function () {
   let inputValue = myInput.value
