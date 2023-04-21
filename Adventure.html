@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+
+        display: flex;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(289.6deg, #0c0c0c 0%, #2c4550 98.22%),
+          linear-gradient(0deg, #ffffff, #ffffff);
+      }
+      .sideNavMain {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border-right: 1px solid #ffffff;
+
+        height: 100vh;
+        width: 10%;
+      }
+      .sideNavMain h1 {
+        padding-top: 20px;
+        color: white;
+        font-family: 'Poppins';
+      }
+      .sideNavIconsDiv {
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 200px;
+      }
+      .mainContent {
+        width: 100vw;
+        height: 100vh;
+      }
+      .navBar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        height: 70px;
+        width: 100%;
+        gap: 20px;
+      }
+      .navBar img {
+        padding-right: 50px;
+        padding-left: 40px;
+      }
+      .mainContentSection {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: start;
+        justify-content: start;
+      }
+      .linkDiv {
+        color: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        justify-content: space-around;
+        padding-right: 20px;
+        gap: 30px;
+        font-weight: bold;
+      }
+      .textDiv {
+        padding-left: 100px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .textDiv p {
+        font-style: normal;
+        width: 525px;
+
+        font-size: 18px;
+      }
+      .textDiv h1 {
+        font-size: 72px;
+        width: 400px;
+        font-weight: 700;
+      }
+      .backImgDiv {
+        position: absolute;
+        z-index: -10;
+        top: -70px;
+        right: 0px;
+      }
+      .guy {
+        position: absolute;
+        bottom: 460px;
+        right: 540px;
+      }
+      .bottomSectino {
+        display: flex;
+        position: absolute;
+        justify-content: space-around;
+        bottom: 0;
+
+        height: 250px;
+        width: 91%;
+        background: radial-gradient(
+            100% 2631.09% at 0% 0%,
+            rgba(0, 0, 0, 0.42) 0%,
+            rgba(0, 0, 0, 0.558) 100%
+          )
+          /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+        backdrop-filter: blur(25px);
+      }
+      .firstTextDiv {
+        padding-top: 30px;
+        color: white;
+        width: 400px;
+      }
+      .secTextDiv {
+        padding-top: 30px;
+        color: white;
+        width: 200px;
+      }
+      .headerIcon {
+        color: white;
+        visibility: hidden;
+        font-size: 3rem;
+      }
+      @media screen and (max-width: 1300px) {
+        .secTextDiv {
+          visibility: hidden;
+        }
+        @media screen and (max-width: 1060px) {
+          .firstTextDiv {
+            padding-left: 10px;
+            font-size: 1rem;
+          }
+          .firstTextDiv h1 {
+            font-size: 1rem;
+          }
+          .firstTextDiv p {
+            font-size: 14px;
+          }
+          .sideNavMain {
+            visibility: hidden;
+          }
+          .bottomSectino {
+            right: 0;
+            width: 100%;
+          }
+          .headerIcon {
+            visibility: visible;
+          }
+        }
+        @media screen and (max-width: 750px) {
+          body {
+            overflow: hidden;
+          }
+          .navlinkwrapper {
+            visibility: hidden;
+          }
+          .textDiv {
+            padding: 0;
+          }
+          .textDiv p {
+            font-style: normal;
+            width: 325px;
+
+            font-size: 18px;
+          }
+          .textDiv h1 {
+            font-size: 72px;
+            width: 300px;
+            font-weight: 700;
+          }
+          .mainContentSection {
+            padding: 0;
+            width: 5px;
+          }
+          .mainContent {
+            padding: 0;
+            position: absolute;
+          }
+          .mainContent h1 {
+          }
+          .mainContent p {
+          }
+        }
+        @media screen and (max-width: 600px) {
+          body {
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+          }
+
+          /* .mainContent {
+            display: none;
+          } */
+          .navBar {
+            overflow: hidden;
+          }
+
+          .bottomSectino {
+            overflow: hidden;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <sectin class="sideNavMain">
+      <h1>Xae</h1>
+      <div class="sideNavIconsDiv">
+        <img src="./utils/AvantureIcons/fb.png" />
+        <img src="./utils/AvantureIcons/ig.png" />
+        <img src="./utils/AvantureIcons/twitter.png" />
+      </div>
+    </sectin>
+    <main class="mainContent">
+      <nav class="navBar">
+        <h1 class="headerIcon">Xae</h1>
+        <div class="navlinkwrapper" style="display: flex; align-items: center;">
+          <div class="linkDiv">
+            <span>Home</span>
+            <span>About</span>
+            <span>Gallery</span>
+            <span>Contact</span>
+          </div>
+          <img src="./utils/AvantureIcons/sun.png" />
+        </div>
+      </nav>
+      <section class="mainContentSection">
+        <div class="textDiv">
+          <h1>
+            Adventure Together
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat
+              id potenti faucibus nec, rhoncus, vulputate vitae. Dictum rutrum
+              ut cras nullam porta id dolor arcu, quis.
+            </p>
+          </h1>
+        </div>
+        <div class="backImgDiv">
+          <img src="./utils/AvantureIcons/backgroundTextur.png" />
+          <img class="guy" src="./utils/AvantureIcons/guy.png" />
+        </div>
+      </section>
+      <section class="bottomSectino">
+        <img src="./utils/AvantureIcons/man.png" />
+        <div class="firstTextDiv">
+          <h1>Exploration</h1>
+          <div style="display: flex; align-items: end;">
+            <p id="paragraph"></p>
+            <img
+              style="width: 3rem; height: 12px;"
+              src="./utils/AvantureIcons/bottomIcon.png"
+            />
+          </div>
+        </div>
+        <div class="secTextDiv">
+          <h1>Footprint</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur
+          </p>
+        </div>
+      </section>
+    </main>
+    <script>
+      const paragraph = document.querySelector('#paragraph')
+      console.log(window.innerWidth)
+      const paragraphString =
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat id potenti faucibus nec, rhoncus, vulputate'
+      window.innerWidth < 750
+        ? (paragraph.innerText = paragraphString.slice(0, 50))
+        : (paragraph.innerText = paragraphString)
+    </script>
+  </body>
+</html>
