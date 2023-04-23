@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+      background-image: url('utils/modelproject/artbg.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mainDiv {
+      width: 600px;
+      height: 300px;
+      border-radius: 20px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .mainDiv h1 {
+      font-size: 3.4rem;
+      font-weight: bold;
+    }
+    #btn {
+      background-color: rgb(30, 169, 255);
+      color: white;
+      letter-spacing: 5px;
+      padding: 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    #btn:hover {
+      background-color: aqua;
+    }
+
+    .dropdown {
+      visibility: hidden;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      background-color: rgba(0, 255, 255, 0.402);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .projectDiv {
+      width: 600px;
+      height: 300px;
+      border-radius: 20px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    #cancel {
+      position: absolute;
+      left: 90%;
+      top: 0;
+      color: red;
+    }
+    .switcher {
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <div class="mainDiv">
+      <h1>Model Project</h1>
+      <button id="btn" class="switcher">OPEN MODEL</button>
+    </div>
+    <div class="dropdown">
+      <div class="projectDiv">
+        <button id="cancel" class="switcher">X</button>
+        <h1>Project</h1>
+      </div>
+    </div>
+    <script>
+      const dropdown = document.querySelector('.dropdown')
+      const btn = document.querySelector('#btn')
+      const cancel = document.querySelector('#cancel')
+      const switcher = document.querySelector('.switcher')
+      //   class DropDownHandle {
+      //     constructor(boolean) {
+      //       this.boolean = boolean
+      //     }
+      //     dropDown() {
+      //       this.boolean = this.boolean ? false : true
+      //       console.log(this.boolean)
+      //
+      //     }
+      //   }
+      //   const newOpener = new DropDownHandle(false)
+
+      cancel.addEventListener('click', () => {
+        dropdown.style.visibility = 'hidden'
+      })
+      btn.addEventListener('click', () => {
+        dropdown.style.visibility = 'visible'
+      })
+    </script>
+  </body>
+</html>
