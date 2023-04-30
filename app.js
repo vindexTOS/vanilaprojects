@@ -1,38 +1,20 @@
-const mapDiv = document.getElementById('map')
-const myInput = document.getElementById('myInput')
-const myBtn = document.getElementById('myBtn')
-import audio from './utils/sounds/'
-let arr = []
+const app = require('express')()
+const fs = require('fs')
 
-function deleteItem(index) {
-  arr.splice(index, 1)
-
-  mapDiv.innerHTML = ''
-  arr.forEach((element, index) => {
-    mapDiv.innerHTML += `
-        <div>
-        <span class="task-edit" >${element}</span>
-          <button onclick="deleteItem(${index})">Delete</button>
-          <button>Edit </button>
-        </div>
-      `
+app.get('/', (req, res) => {
+  fs.readFile('./views/index.html', (err, data) => {
+    res.setHeader('Content-Type', 'text/html')
+    res.status(200).send(data)
   })
-}
+})
 
-function editItem() {}
-
-myBtn.addEventListener('click', function () {
-  let inputValue = myInput.value
-  arr.push(inputValue)
-
-  mapDiv.innerHTML = ''
-  arr.forEach((element, index) => {
-    mapDiv.innerHTML += `<div>
-     <span class="task-edit" >${element}</span>
-     <button onclick='deleteItem(${index})' >Delete</button>
-     <button>Edit </button>
-     </div>
-     
-     `
+app.get('/tabata', (req, res) => {
+  fs.readFile('./views/Tabata.html', (err, data) => {
+    res.setHeader('Content-Type', 'text/html')
+    res.status(200).send(data)
   })
+})
+
+app.listen(5000, () => {
+  console.log('server on port 5000...')
 })
