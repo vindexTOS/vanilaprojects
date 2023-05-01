@@ -1,0 +1,15 @@
+{
+  "name": "vanila",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:vindexTOS/vanilaprojects.git",
+  "author": "VindexTOS <giorgikutateladze1998@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
